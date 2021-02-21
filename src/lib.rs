@@ -255,7 +255,7 @@ use proc_macro2::{Delimiter, Group, Ident, Literal, Punct, Spacing, Span, TokenS
 use quote::quote;
 use syn::{
     parse::Parser, parse_macro_input, parse_quote, spanned::Spanned, Attribute, Block, FnArg,
-    GenericArgument, ImplItem, ItemImpl, Pat, PathArguments, Type,
+    GenericArgument, ImplItem, ItemImpl, Pat, PatIdent, PathArguments, Type,
 };
 
 /// See module-level documentation
@@ -403,14 +403,17 @@ fn mirror(mut ast: ItemImpl) -> TokenStream {
                             // replace the underlying type for other_arg
                             reference.elem = Box::new(self_type.clone());
 
+                            let pat_ident = PatIdent {
+                                attrs: Vec::new(),
+                                by_ref: None,
+                                mutability: None,
+                                ident: Ident::new("other", other_arg.span()),
+                                subpat: None,
+                            };
+                            other_arg.pat = Box::new(Pat::Ident(pat_ident));
                             match other_arg.pat.as_ref() {
                                 Pat::Ident(ident) => &ident.ident,
-                                _ => {
-                                    return to_compile_error(
-                                        "expected an ident".to_string(),
-                                        other_arg.pat.span(),
-                                    );
-                                }
+                                _ => unreachable!(),
                             }
                         }
                         _ => {
@@ -421,25 +424,20 @@ fn mirror(mut ast: ItemImpl) -> TokenStream {
                         }
                     }
                 } else {
-                    // both should be concrete
+                    // replace other_arg by plain pattern
+                    let pat_ident = PatIdent {
+                        attrs: Vec::new(),
+                        by_ref: None,
+                        mutability: None,
+                        ident: Ident::new("other", other_arg.span()),
+                        subpat: None,
+                    };
+                    other_arg.pat = Box::new(Pat::Ident(pat_ident));
+                    // replace the type of other_arg
+                    other_arg.ty = Box::new(self_type.clone());
                     match other_arg.pat.as_ref() {
-                        Pat::Ident(ident) => {
-                            if self_arg.mutability != ident.mutability {
-                                return to_compile_error(
-                                    "mismatched mutability".to_string(),
-                                    ident.span(),
-                                );
-                            }
-                            // replace the type of other_arg
-                            other_arg.ty = Box::new(self_type.clone());
-                            &ident.ident
-                        }
-                        _ => {
-                            return to_compile_error(
-                                "expected an ident".to_string(),
-                                other_arg.pat.span(),
-                            );
-                        }
+                        Pat::Ident(ident) => &ident.ident,
+                        _ => unreachable!(),
                     }
                 };
 
