@@ -1,0 +1,5 @@
+error: symmetric trait must contain at least 1 type argument
+  --> $DIR/trait_with_only_lifetime.rs:12:11
+   |
+12 | impl<'a> T<'a> for A {
+   |           ^

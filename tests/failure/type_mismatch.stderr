@@ -1,0 +1,46 @@
+error: expected a reference
+  --> $DIR/type_mismatch.rs:33:20
+   |
+33 |     fn op_1(&self, other: B) -> i32 {
+   |                    ^^^^^
+
+error: mismatched mutability
+  --> $DIR/type_mismatch.rs:45:24
+   |
+45 |     fn op_3(&mut self, other: &B) -> i32 {
+   |                        ^^^^^
+
+error: mismatched mutability
+  --> $DIR/type_mismatch.rs:51:20
+   |
+51 |     fn op_4(&self, other: &mut B) -> i32 {
+   |                    ^^^^^
+
+error: mismatched lifetime
+  --> $DIR/type_mismatch.rs:57:31
+   |
+57 |     fn op_5<'a, 'b>(&'a self, other: &'b B) -> i32 {
+   |                               ^^^^^
+
+error[E0053]: method `op_2` has an incompatible type for trait
+  --> $DIR/type_mismatch.rs:38:16
+   |
+8  |     fn op_2(self, other: &Other) -> i32;
+   |                          ------ type in trait
+...
+38 | impl T2<B> for A {
+   |                ^ expected `&A`, found struct `A`
+   |
+   = note: expected fn pointer `fn(B, &A) -> _`
+              found fn pointer `fn(B, A) -> _`
+
+error[E0308]: mismatched types
+  --> $DIR/type_mismatch.rs:37:1
+   |
+37 | #[symmetric]
+   | ^^^^^^^^^^^^
+   | |
+   | expected `&B`, found struct `B`
+   | help: consider borrowing here: `&#[symmetric]`
+   |
+   = note: this error originates in an attribute macro (in Nightly builds, run with -Z macro-backtrace for more info)

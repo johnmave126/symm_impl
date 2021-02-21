@@ -1,0 +1,7 @@
+error: #[symmetric] can only be used on trait implementation
+ --> $DIR/not_trait_impl.rs:7:1
+  |
+7 | #[symmetric]
+  | ^^^^^^^^^^^^
+  |
+  = note: this error originates in an attribute macro (in Nightly builds, run with -Z macro-backtrace for more info)

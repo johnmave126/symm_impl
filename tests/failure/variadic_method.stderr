@@ -1,0 +1,5 @@
+error: https://github.com/rust-lang/rust/issues/44930
+  --> $DIR/variadic_method.rs:26:1
+   |
+26 | compile_error!("https://github.com/rust-lang/rust/issues/44930");
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

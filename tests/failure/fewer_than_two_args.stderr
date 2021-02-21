@@ -1,0 +1,5 @@
+error: expected 2 arguments
+  --> $DIR/fewer_than_two_args.rs:17:11
+   |
+17 |     fn op(&self) -> i32 {
+   |           ^

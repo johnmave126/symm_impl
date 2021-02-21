@@ -1,0 +1,5 @@
+error: expected a receiver
+  --> $DIR/first_arg_not_self.rs:17:11
+   |
+17 |     fn op(other: &B, this: &Self) -> i32 {
+   |           ^^^^^

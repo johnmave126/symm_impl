@@ -1,0 +1,5 @@
+error: https://github.com/rust-lang/rust/issues/68318
+  --> $DIR/negative_trait.rs:16:1
+   |
+16 | compile_error!("https://github.com/rust-lang/rust/issues/68318");
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

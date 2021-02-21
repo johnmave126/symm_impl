@@ -1,0 +1,5 @@
+error: expected an ident
+  --> $DIR/not_ident.rs:17:18
+   |
+17 |     fn op(&self, _: &B) -> i32 {
+   |                  ^

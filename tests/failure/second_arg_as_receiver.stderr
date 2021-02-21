@@ -1,0 +1,23 @@
+error: unexpected `self` parameter in function
+ --> $DIR/second_arg_as_receiver.rs:4:18
+  |
+4 |     fn op(&self, &self) -> i32;
+  |                  ^^^^^ must be the first parameter of an associated function
+
+error: unexpected `self` parameter in function
+  --> $DIR/second_arg_as_receiver.rs:17:18
+   |
+17 |     fn op(&self, &self) -> i32 {
+   |                  ^^^^^ must be the first parameter of an associated function
+
+error: unexpected `self` parameter in function
+
+error: expected a reference
+  --> $DIR/second_arg_as_receiver.rs:15:1
+   |
+15 | #[symmetric]
+   | ^^^^^^^^^^^^
+   |
+   = note: this error originates in an attribute macro (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0415]: identifier `self` is bound more than once in this parameter list
