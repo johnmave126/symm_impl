@@ -1,6 +1,6 @@
 [package]
 name = "symm_impl"
-version = "0.1.0"
+version = "0.1.1"
 description = "Attribute macro that automatically implements a symmetric trait"
 repository = "https://github.com/johnmave126/symm_impl"
 documentation = "https://docs.rs/symm_impl"
