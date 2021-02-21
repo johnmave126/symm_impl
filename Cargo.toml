@@ -6,6 +6,14 @@ edition = "2018"
 keywords = ["derive", "macro", "trait", "procedural"]
 categories = ["no-std", "rust-patterns"]
 license = "MIT OR Apache-2.0"
+readme = "README.md"
+include = [
+    "/Cargo.toml",
+    "/LICENSE-APACHE",
+    "/LICENSE-MIT",
+    "/README.md",
+    "/src/lib.rs",
+]
 
 [lib]
 proc-macro = true
