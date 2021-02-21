@@ -1,6 +1,9 @@
 [package]
 name = "symm_impl"
 version = "0.1.0"
+description = "Attribute macro that automatically implements a symmetric trait"
+repository = "https://github.com/johnmave126/symm_impl"
+documentation = "https://docs.rs/symm_impl"
 authors = ["Youmu <johnmave126@gmail.com>"]
 edition = "2018"
 keywords = ["derive", "macro", "trait", "procedural"]
