@@ -468,7 +468,8 @@ fn mirror(mut ast: ItemImpl) -> TokenStream {
                 };
                 associated_type.ty = delegated_type;
             }
-            _ => unreachable!(),
+            // keep as-is
+            _ => (),
         }
     }
 
